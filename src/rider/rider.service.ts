@@ -30,9 +30,6 @@ export class RiderService {
   }
 
   findOne(id: number) {
-    console.log(id);
-    console.log(typeof id);
-    console.log('find one is called');
     return this.prisma.rider.findUnique({
       where: {
         id: id,
@@ -49,11 +46,7 @@ export class RiderService {
   }
 
   async search(latitude: number, longitude: number, distance: number) {
-    console.log(latitude, longitude, distance);
-
     const riders = await this.findAll();
-
-    console.log(riders);
 
     const ridersWithDistance = riders
       .filter((rider) => rider.locations.length > 0) // Only include riders with locations
